@@ -54,7 +54,7 @@
             </el-popover>
           </div>
         </div>
-        <el-table :data="tableData.data" @selection-change="handleSelectionChange">
+        <el-table :data="tableDatas" @selection-change="handleSelectionChange">
           <el-table-column type="selection" width="55"></el-table-column>
           <template v-for="item in tableList">
             <el-table-column
@@ -106,10 +106,12 @@
     .el-button + .el-button {
       margin-left: 1px;
     }
-    .el-checkbox {
-      display: block;
-      margin-bottom: 6px;
-    }
+  }
+}
+.el-popover {
+  .el-checkbox {
+    display: block;
+    margin-bottom: 6px;
   }
 }
 </style>
@@ -198,6 +200,7 @@ export default {
       ],
       select: "",
       tableData: tableData,
+      tableDatas: "",
       tableList: [
         {
           label: "name",
@@ -235,7 +238,7 @@ export default {
     };
   },
   created() {
-    this.tableData.data = gettableList(this.tableList, this.tableData.data);
+    this.tableDatas = gettableList(this.tableList, this.tableData.data);
   },
   mounted() {
     this.zxlFilter();
@@ -278,7 +281,7 @@ export default {
       this.$forceUpdate(); //列表强制刷新
     },
     handleSelectionChange(val) {
-      console.log(val)
+      console.log(val);
     }
   },
   computed: {}
