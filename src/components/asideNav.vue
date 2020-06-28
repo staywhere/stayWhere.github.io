@@ -71,6 +71,7 @@ export default {
         background-color: #009688;
       }
       .el-submenu__icon-arrow {
+        position: absolute;
         margin-top: -10px;
         font-size: 18px;
       }
