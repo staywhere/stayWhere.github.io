@@ -42,7 +42,7 @@ body,
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
 import zxlHead from "@/components/Head.vue";
-import asideNav from "@/components/asideNav.vue";
+import asideNav from "@/components/AsideNav.vue";
 import zxlFooter from "@/components/Footer.vue";
 
 const personData = {

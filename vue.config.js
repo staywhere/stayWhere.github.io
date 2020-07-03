@@ -7,7 +7,7 @@ const path = require('path')
 // For example, Mac: sudo npm run
 // You can change the port by the following method:
 // port = 9527 npm run dev OR npm run dev --port = 9527
-const port = process.env.port || process.env.npm_config_port || 9527 // dev port
+const port = process.env.port || process.env.npm_config_port || 8080 // dev port
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
@@ -21,34 +21,57 @@ module.exports = {
   // 部署应用时的基本 URL
   // publicPath: process.env.NODE_ENV === 'production' ? '192.168.60.110:8080' : '192.168.60.110:8080',
   publicPath: './',
+
   outputDir: 'dist',
   assetsDir: 'static',
+
   // 指定生成的 index.html 的输出路径 (相对于 outputDir)。也可以是一个绝对路径。
   indexPath: 'index.html',
+
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
+
   devServer: {
-    https: true,
+    https: true, // https为加密的协议 没法通信，导致热更新失效
     port: port,
     open: true,
+    hot: true,
     overlay: {
       warnings: false,
       errors: true
     },
     proxy: {
-      '/proxy': {
-        target: 'http://testapp.51vfang.cn',
+      '/api': {
+        target: '/',
+        ws: true,
         changeOrigin: true,
         pathRewrite: {
-          '^/proxy': '/'
-        },
-        secure: false
+          '^/api': '/'
+        }
+      },
+      'znmc': {
+        target: 'http://znmc.cn:8081/',
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/znmc': '/'
+        }
       }
     }
   },
-  chainWebpack (config) {
+
+  chainWebpack: config => {
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal'];
-    // types.forEach(type => addStyleResource(config.module.rule('scss').oneOf(type)))
+    types.forEach(type => addStyleResource(config.module.rule('scss').oneOf(type)));
+    // 修复HMR
+    config.resolve.symlinks(true);
+  },
+
+  pluginOptions: {
+    'style-resources-loader': {
+      preProcessor: 'scss',
+      patterns: []
+    }
   }
 }
 

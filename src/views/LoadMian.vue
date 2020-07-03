@@ -1,5 +1,5 @@
 <template>
-  <el-main>欢迎进入</el-main>
+  <el-main>{{ welcome }}</el-main>
 </template>
 
 <style lang="scss" scoped>
@@ -9,7 +9,18 @@
 <script>
 export default {
   data() {
-    return {}
-  }
+    return {
+      welcome: '欢迎进入'
+    }
+  },
+  created() {
+    axios.get('/znmc/api/index/init', {
+      params: {
+        wd: 'axios拦截器的作用'
+      }
+    }).then((res) => {
+      
+    })
+  },
 }
 </script>
