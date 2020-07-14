@@ -21,7 +21,7 @@
 export default {
   data() {
     return {
-      welcome: '欢迎进入1'
+      welcome: '欢迎进入'
     }
   },
   created() {
