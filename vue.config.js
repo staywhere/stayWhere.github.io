@@ -32,7 +32,7 @@ module.exports = {
   productionSourceMap: false,
 
   devServer: {
-    https: true, // https为加密的协议 没法通信，导致热更新失效
+    https: false, // https为加密的协议 没法通信，导致热更新失效
     port: port,
     open: true,
     hot: true,

@@ -23,7 +23,6 @@ _axios.interceptors.request.use(
     if (store.state.token) {
       config.headers.Authirization = `token ${store.state.token}`;
     }
-    console.log(config)
     return config;
   },
   function (error) {
@@ -41,7 +40,6 @@ _axios.interceptors.response.use(
   function (error) {
     // Do something with response error
     if (error.response) {
-      console.log(error.response)
       switch (error.response.status) {
         case 401:
           // 返回 401 清除token信息并跳转到登录页面

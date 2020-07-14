@@ -16,15 +16,24 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
+    meta: {
+      requireAuth: true
+    },
     children: [
       {
         path: '',
         name: 'LoadMian',
+        meta: {
+          requireAuth: true
+        },
         component: () => import('../views/LoadMian.vue')
       },
       {
         path: 'sys/role',
         name: 'sys/role',
+        meta: {
+          requireAuth: true
+        },
         component: () => import('../views/sys/Role.vue')
       },
       {

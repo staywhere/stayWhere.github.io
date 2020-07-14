@@ -1,15 +1,19 @@
 <template>
-  <el-main>user</el-main>
+  <el-main>{{ data }}</el-main>
 </template>
-
-<style lang="scss" scoped>
-
-</style>
 
 <script>
 export default {
   data() {
-    return {}
-  }
+    return {
+      data: 'user234567'
+    }
+  },
+  created() {
+  },
 }
 </script>
+
+<style lang="scss" scoped>
+
+</style>

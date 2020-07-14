@@ -3,7 +3,7 @@
     <el-menu>
       <el-submenu v-for="navs in propsNav" :key="navs.id" :index="navs.id.toString()">
         <template slot="title">
-          <i class="el-icon-message"></i>
+          <!-- <i class="layui-icon">&#xe60c;</i> -->
           {{ navs.name }}
         </template>
         <el-menu-item
@@ -11,7 +11,7 @@
           :key="navsChild.id"
           :index="navsChild.id.toString()"
           @click="goDetail(navsChild.path)"
-        ><i class="el-icon-message"></i>{{ navsChild.name }}</el-menu-item>
+        ><i class="layui-icon" v-html='navsChild.icon'></i> {{ navsChild.name }}</el-menu-item>
       </el-submenu>
     </el-menu>
   </el-aside>
@@ -29,6 +29,11 @@ export default {
         name: str
       })
     }
+  },
+  watch: {
+    // propsNav(newData, oldData) {
+    //   console.log(newData)
+    // }
   },
 };
 </script>
