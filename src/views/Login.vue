@@ -123,7 +123,8 @@ export default {
       this.axios
         .get("/znmc/api/captcha/gif", {
           params: {
-            clear: Math.random()
+            clear: Math.random(),
+            ddd: '33333'
           }
         })
         .then(res => {
@@ -137,21 +138,12 @@ export default {
         code: this.code
       };
       this.axios
-        .post("/znmc/api/login/account", this.$qs.stringify(data))
+        .post("/znmc/api/login/account", data)
         .then(res => {
           if(res.data.success) {
             this.$router.push('/')
           }
         });
-    },
-    getData() {
-      this.axios.get('/znmc/api/index/init', {
-      params: {
-        wd: 'axios拦截器的作用'
-      }
-    }).then((res) => {
-      console.log(res)
-    })
     }
   }
 };

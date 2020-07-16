@@ -37,6 +37,9 @@ body,
     border-bottom: 1px solid #eee;
   }
 }
+.el-dialog {
+  margin-top: 30vh!important;
+}
 </style>
 <style lang='scss' scoped>
 </style>

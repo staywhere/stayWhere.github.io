@@ -3,6 +3,7 @@
 import Vue from 'vue';
 import axios from "axios";
 import store from '../store';
+import Qs from 'qs'
 
 // Full config:  https://github.com/axios/axios#request-config
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
@@ -23,6 +24,8 @@ _axios.interceptors.request.use(
     if (store.state.token) {
       config.headers.Authirization = `token ${store.state.token}`;
     }
+    config.data = Qs.stringify(config.data) // 拦截传参为&字符串形式
+
     return config;
   },
   function (error) {
